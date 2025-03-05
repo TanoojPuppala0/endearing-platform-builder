@@ -186,7 +186,7 @@ const Chat = () => {
       <header className="bg-white border-b border-gray-200 py-4 px-6">
         <div className="flex justify-between items-center max-w-6xl mx-auto">
           <a href="/" className="flex items-center gap-2">
-            <span className="font-display font-bold text-xl">Synthesis</span>
+            <span className="font-display font-bold text-xl">MT Nexus</span>
           </a>
           
           <button

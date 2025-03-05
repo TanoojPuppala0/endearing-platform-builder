@@ -17,12 +17,16 @@ serve(async (req) => {
 
   try {
     if (!OPENAI_API_KEY) {
+      console.error('Missing OpenAI API key');
       throw new Error('Missing OpenAI API key');
     }
 
     const { message } = await req.json();
     console.log('Received message:', message);
 
+    // Added more detailed logging for debugging
+    console.log('Calling OpenAI API with key length:', OPENAI_API_KEY.length);
+    
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -39,14 +43,23 @@ serve(async (req) => {
       }),
     });
 
+    // Add more detailed error logging
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('OpenAI API error:', errorData);
-      throw new Error(`OpenAI API error: ${errorData.error?.message || 'Unknown error'}`);
+      const errorText = await response.text();
+      console.error('OpenAI API error response:', response.status, errorText);
+      
+      try {
+        const errorData = JSON.parse(errorText);
+        console.error('OpenAI API error details:', errorData);
+        throw new Error(`OpenAI API error: ${errorData.error?.message || 'Unknown error'}`);
+      } catch (parseError) {
+        console.error('Failed to parse error response:', parseError);
+        throw new Error(`OpenAI API error: Status ${response.status}`);
+      }
     }
 
     const data = await response.json();
-    console.log('OpenAI response received');
+    console.log('OpenAI response received successfully');
     const aiResponse = data.choices[0].message.content;
 
     return new Response(
