@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,6 @@ const Auth = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Check if user is already logged in
   useEffect(() => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
@@ -24,7 +22,6 @@ const Auth = () => {
     
     checkSession();
     
-    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (session) {
@@ -54,7 +51,6 @@ const Auth = () => {
       setLoading(true);
       
       if (isSignUp) {
-        // Sign up
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -67,7 +63,6 @@ const Auth = () => {
           description: "Check your email for the confirmation link",
         });
       } else {
-        // Sign in
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -112,7 +107,7 @@ const Auth = () => {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-6">
       <div className="absolute top-6 left-6">
         <a href="/" className="flex items-center gap-2 group">
-          <span className="font-display font-bold text-xl">Synthesis</span>
+          <span className="font-display font-bold text-xl">MT Nexus</span>
         </a>
       </div>
       

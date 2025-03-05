@@ -21,6 +21,7 @@ serve(async (req) => {
     }
 
     const { message } = await req.json();
+    console.log('Received message:', message);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -38,7 +39,14 @@ serve(async (req) => {
       }),
     });
 
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('OpenAI API error:', errorData);
+      throw new Error(`OpenAI API error: ${errorData.error?.message || 'Unknown error'}`);
+    }
+
     const data = await response.json();
+    console.log('OpenAI response received');
     const aiResponse = data.choices[0].message.content;
 
     return new Response(

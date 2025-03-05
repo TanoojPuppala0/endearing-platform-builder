@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <a href="/" className="flex items-center gap-2 mb-6">
               <AnimatedLogo />
-              <span className="font-display font-bold text-xl">Synthesis</span>
+              <span className="font-display font-bold text-xl">MT Nexus</span>
             </a>
             <p className="text-gray-600 mb-6 max-w-md">
               Create stunning websites and applications without coding. Our intuitive platform makes design and development accessible to everyone.
@@ -90,7 +90,7 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-500 text-sm">
-            © {year} Synthesis. All rights reserved.
+            © {year} MT Nexus. All rights reserved.
           </div>
           <div className="flex gap-6">
             <a href="#privacy" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">

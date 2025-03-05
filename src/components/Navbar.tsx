@@ -39,7 +39,7 @@ const Navbar = () => {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 group">
           <AnimatedLogo className="transition-transform group-hover:scale-110 duration-300" />
-          <span className="font-display font-bold text-xl">Synthesis</span>
+          <span className="font-display font-bold text-xl">MT Nexus</span>
         </a>
         
         {/* Desktop Navigation */}
@@ -58,7 +58,7 @@ const Navbar = () => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <a
-            href="#get-started"
+            href="/auth"
             className="px-5 py-2 rounded-full bg-black text-white font-medium text-sm transition-all hover:bg-gray-800 button-highlight"
           >
             Get Started
@@ -90,7 +90,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center mb-10">
             <a href="/" className="flex items-center gap-2">
               <AnimatedLogo />
-              <span className="font-display font-bold text-xl">Synthesis</span>
+              <span className="font-display font-bold text-xl">MT Nexus</span>
             </a>
             <button
               onClick={toggleMobileMenu}
@@ -114,7 +114,7 @@ const Navbar = () => {
           </nav>
           
           <a
-            href="#get-started"
+            href="/auth"
             className="w-full py-3 rounded-full bg-black text-white text-center font-medium transition-all hover:bg-gray-800 button-highlight"
             onClick={toggleMobileMenu}
           >
