@@ -1,12 +1,73 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import HowItWorks from '../components/HowItWorks';
+import Cta from '../components/Cta';
+import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 const Index = () => {
+  // Scroll to section on hash change or page load
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          // Add a small delay to allow for animations and rendering
+          setTimeout(() => {
+            const navbarHeight = 80; // Approximate navbar height
+            const topOffset = element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            window.scrollTo({
+              top: topOffset,
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
+      }
+    };
+    
+    // Initial check on page load
+    handleHashChange();
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+  
+  // Setup scroll animation observers
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    );
+    
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach((el) => observer.observe(el));
+    
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      <Hero />
+      <Features />
+      <HowItWorks />
+      <Cta />
+      <Footer />
     </div>
   );
 };
