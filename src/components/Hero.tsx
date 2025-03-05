@@ -71,7 +71,7 @@ const Hero = () => {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animate-slide-up stagger-2">
           <a 
-            href="#get-started" 
+            href="/auth" 
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black text-white font-medium transition-all hover:bg-gray-800 button-highlight"
           >
             Get Started

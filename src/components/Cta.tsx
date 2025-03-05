@@ -25,7 +25,7 @@ const Cta = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in stagger-2">
                 <a 
-                  href="#signup" 
+                  href="/auth" 
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-white text-gray-900 font-medium transition-all hover:bg-gray-100 hover:scale-105"
                 >
                   Get Started for Free
